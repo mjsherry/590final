@@ -27,10 +27,6 @@ value <- baseData %>%
   filter(Metric=='Value', `?Format` %in% c("8 - Track", "Cassette", "CD", "Download Album", "Paid Subscription")) %>%
   mutate(Format = `?Format`)
 
-valueAdjusted <- baseData %>%
-  filter(Metric=='Value (Adjusted)', `?Format` %in% c("8 - Track", "Cassette", "CD", "Download Album", "Paid Subscription")) %>%
-  mutate(Format = `?Format`)
-
 grouped <- value %>%
   group_by(Year) %>%
   summarize(Value = ave(`Value (Actual)`))
@@ -47,11 +43,6 @@ valueOverTime <- ggplot(value, aes(x = Year, y = `Value (Actual)`, colour = `For
   theme_classic() +
   labs(title = "Value Over Time")
 
-valueAdjustedOverTime <- ggplot(valueAdjusted, aes(x = Year, y = `Value (Actual)`, colour = `Format`)) +
-  geom_path() +
-  theme_classic() +
-  labs(title = "Value (Adjusted) Over Time")
-
 totalValueOverTime <- ggplot(grouped, aes(x = Year, y = Value)) +
   geom_path() +
   theme_classic() +
@@ -59,6 +50,5 @@ totalValueOverTime <- ggplot(grouped, aes(x = Year, y = Value)) +
 
 unitsOverTime
 valueOverTime
-valueAdjustedOverTime
 totalValueOverTime
 ```
