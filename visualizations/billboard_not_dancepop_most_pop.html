@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.16.3"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-5091790f61f2a7dc88ccf5f62d849bfe"}, "mark": {"type": "bar"}, "encoding": {"color": {"field": "Max_Genre", "type": "nominal"}, "tooltip": [{"field": "Max_Genre", "type": "nominal"}, {"field": "Count", "type": "quantitative"}], "x": {"axis": {"format": ""}, "field": "year", "type": "quantitative"}, "y": {"field": "Count", "type": "quantitative"}}, "$schema": "https://vega.github.io/schema/vega-lite/v5.16.3.json", "datasets": {"data-5091790f61f2a7dc88ccf5f62d849bfe": [{"year": 2010, "Max_Genre": "atl hip hop", "Count": 3}, {"year": 2011, "Max_Genre": "barbadian pop", "Count": 4}, {"year": 2012, "Max_Genre": "pop", "Count": 7}, {"year": 2013, "Max_Genre": "boy band", "Count": 6}, {"year": 2014, "Max_Genre": "pop", "Count": 9}, {"year": 2015, "Max_Genre": "canadian pop", "Count": 11}, {"year": 2016, "Max_Genre": "canadian pop", "Count": 7}, {"year": 2017, "Max_Genre": "pop", "Count": 5}, {"year": 2018, "Max_Genre": "pop", "Count": 9}, {"year": 2019, "Max_Genre": "pop", "Count": 9}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

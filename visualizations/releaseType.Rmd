@@ -1,0 +1,64 @@
+---
+title: "Final"
+author: "Jackson Reed, Alec Pugh, Mikaela Sherry, Yulim Kim"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+```
+
+## R Markdown
+
+```{r}
+baseData <- read_csv("data/releaseTypeData.csv")
+
+baseData[is.na(baseData)] <- 0
+
+units <- baseData %>%
+  filter(Metric=='Units', `?Format` %in% c("8 - Track", "Cassette", "CD", "Download Album", "Paid Subscriptions") ) %>%
+  mutate(Format = `?Format`)
+
+value <- baseData %>%
+  filter(Metric=='Value', `?Format` %in% c("8 - Track", "Cassette", "CD", "Download Album", "Paid Subscription")) %>%
+  mutate(Format = `?Format`)
+
+valueAdjusted <- baseData %>%
+  filter(Metric=='Value (Adjusted)', `?Format` %in% c("8 - Track", "Cassette", "CD", "Download Album", "Paid Subscription")) %>%
+  mutate(Format = `?Format`)
+
+grouped <- value %>%
+  group_by(Year) %>%
+  summarize(Value = ave(`Value (Actual)`))
+```
+
+```{r}
+unitsOverTime <- ggplot(units, aes(x = Year, y = `Value (Actual)`, colour = `Format`)) +
+  geom_path() +
+  theme_classic() +
+  labs(title = "Units Over Time")
+
+valueOverTime <- ggplot(value, aes(x = Year, y = `Value (Actual)`, colour = `Format`)) +
+  geom_path() +
+  theme_classic() +
+  labs(title = "Value Over Time")
+
+valueAdjustedOverTime <- ggplot(valueAdjusted, aes(x = Year, y = `Value (Actual)`, colour = `Format`)) +
+  geom_path() +
+  theme_classic() +
+  labs(title = "Value (Adjusted) Over Time")
+
+totalValueOverTime <- ggplot(grouped, aes(x = Year, y = Value)) +
+  geom_path() +
+  theme_classic() +
+  labs(title = "Total Music Sales Value Over Time")
+
+unitsOverTime
+valueOverTime
+valueAdjustedOverTime
+totalValueOverTime
+```
