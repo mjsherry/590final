@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Final</title>
+    <title>COMP 590 Info Vis Final</title>
     <link href="https://fonts.googleapis.com/css?family=JetBrains+Mono" rel="stylesheet">
     <style>
         /* Add your CSS styles here */
@@ -15,6 +15,14 @@
             margin: 20px auto 0;
             max-width: 800px; 
             text-align: center; 
+        }
+
+        h2 
+        {
+          font-size: 20px;
+          max-width: fit-content;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         p {
@@ -35,28 +43,172 @@
           .gray-text {
             color: grey; 
           }
+
+          #vis
+          {
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          #vis2
+          {
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          #vis3
+          {
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          #viz1713379990623
+          {
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+          }
+          #vis.vega-embed {
+            width: 100%;
+            display: flex;
+          }
+
+          #vis.vega-embed details,
+          #vis.vega-embed details summary {
+            position: relative;
+          }
+          #vis3.vega-embed {
+            width: 100%;
+            display: flex;
+          }
+
+          #vis3.vega-embed details,
+          #vis3.vega-embed details summary {
+            position: relative;
+          }
+
+          #vis2.vega-embed {
+            width: 100%;
+            display: flex;
+          }
+
+          #vis2.vega-embed details,
+          #vis2.vega-embed details summary {
+            position: relative;
+          }
           
         
     </style>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.16.3"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
 </head>
 
-<head>
-    <style>
-      #vis.vega-embed {
-        width: 100%;
-        display: flex;
-      }
-  
-      #vis.vega-embed details,
-      #vis.vega-embed details summary {
-        position: relative;
-      }
-    </style>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.16.3"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-  </head>
   <body>
+
+    <h1> Info Vis: Final Project </h1>
+    <h2> Alec Pugh, Jackson Reed, Mikaela Sherry, Yulim Kim </h2>
+
+    <h2> Motivating Problem </h2>
+    <p> Our motivating problem for this project focuses on musical analysis from the point of view of the Artists and Listeners. Looking at aspects such as Billboard charts, musical sales, and production data, we hope to answer the following question: What is popular amongst artists and what is popular amongst listeners? What does music look like from the point of view of these two groups? </p>
+
+    <h2> Brief Intro </h2>
+    <p> The music industry has undergone a profound transformation in recent years, marked by significant shifts in both the production and consumption of music. Rapid advancements in producing technology, streaming platforms, and ever-evolving consumer preferences and production styles have spurred innovative approaches to the music industry for both creators and listeners. We hope to look into both sides of music: artists and trends of music production across the globe, and listeners and listening habits within the United States.  </p>
+
+    <h1> Visuals </h1>
+
+    <h2> Listener Visualizations </h2>
+
+    <div id="vis2">
+      <script>
+        (function(vegaEmbed) {
+          var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-2508c39f7954def8edd3f8321ad2abb0"}, "mark": {"type": "bar"}, "encoding": {"color": {"field": "Max_Genre", "type": "nominal"}, "tooltip": [{"field": "Max_Genre", "type": "nominal"}, {"field": "Count", "type": "quantitative"}], "x": {"axis": {"format": ""}, "field": "year", "type": "quantitative"}, "y": {"field": "Count", "type": "quantitative"}}, "$schema": "https://vega.github.io/schema/vega-lite/v5.16.3.json", "datasets": {"data-2508c39f7954def8edd3f8321ad2abb0": [{"year": 2010, "Max_Genre": "dance pop", "Count": 31}, {"year": 2011, "Max_Genre": "dance pop", "Count": 38}, {"year": 2012, "Max_Genre": "dance pop", "Count": 15}, {"year": 2013, "Max_Genre": "dance pop", "Count": 42}, {"year": 2014, "Max_Genre": "dance pop", "Count": 27}, {"year": 2015, "Max_Genre": "dance pop", "Count": 52}, {"year": 2016, "Max_Genre": "dance pop", "Count": 46}, {"year": 2017, "Max_Genre": "dance pop", "Count": 31}, {"year": 2018, "Max_Genre": "dance pop", "Count": 38}, {"year": 2019, "Max_Genre": "pop", "Count": 9}]}};
+          var embedOpt = {"mode": "vega-lite"};
+    
+          function showError(el, error){
+              el.innerHTML = ('<div style="color:red;">'
+                              + '<p>JavaScript Error: ' + error.message + '</p>'
+                              + "<p>This usually means there's a typo in your chart specification. "
+                              + "See the javascript console for the full traceback.</p>"
+                              + '</div>');
+              throw error;
+          }
+          const el = document.getElementById('vis2');
+          vegaEmbed("#vis2", spec, embedOpt)
+            .catch(error => showError(el, error));
+        })(vegaEmbed);
+    
+      </script>
+    </div>
+
+    <p> Utilizing Python and the visualization package Altair, we were able to analyze trends in listening patterns through Spotify. This allows us to gain insight into the habits and preferences of music listeners within the United States. Through aggregation by year, we were able to visualize the counts of the most genres per year with a bar chart. The color of each bar is representative of the most popular genre for that year on the Billboard chart. When mousing over each bar, the top genre and count for that year appear in a tooltip, allowing for easy readability and comprehension for users.  </p>
+
+    <div id="vis3">
+      <script>
+        (function(vegaEmbed) {
+          var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-5091790f61f2a7dc88ccf5f62d849bfe"}, "mark": {"type": "bar"}, "encoding": {"color": {"field": "Max_Genre", "type": "nominal"}, "tooltip": [{"field": "Max_Genre", "type": "nominal"}, {"field": "Count", "type": "quantitative"}], "x": {"axis": {"format": ""}, "field": "year", "type": "quantitative"}, "y": {"field": "Count", "type": "quantitative"}}, "$schema": "https://vega.github.io/schema/vega-lite/v5.16.3.json", "datasets": {"data-5091790f61f2a7dc88ccf5f62d849bfe": [{"year": 2010, "Max_Genre": "atl hip hop", "Count": 3}, {"year": 2011, "Max_Genre": "barbadian pop", "Count": 4}, {"year": 2012, "Max_Genre": "pop", "Count": 7}, {"year": 2013, "Max_Genre": "boy band", "Count": 6}, {"year": 2014, "Max_Genre": "pop", "Count": 9}, {"year": 2015, "Max_Genre": "canadian pop", "Count": 11}, {"year": 2016, "Max_Genre": "canadian pop", "Count": 7}, {"year": 2017, "Max_Genre": "pop", "Count": 5}, {"year": 2018, "Max_Genre": "pop", "Count": 9}, {"year": 2019, "Max_Genre": "pop", "Count": 9}]}};
+          var embedOpt = {"mode": "vega-lite"};
+    
+          function showError(el, error){
+              el.innerHTML = ('<div style="color:red;">'
+                              + '<p>JavaScript Error: ' + error.message + '</p>'
+                              + "<p>This usually means there's a typo in your chart specification. "
+                              + "See the javascript console for the full traceback.</p>"
+                              + '</div>');
+              throw error;
+          }
+          const el = document.getElementById('vis3');
+          vegaEmbed("#vis3", spec, embedOpt)
+            .catch(error => showError(el, error));
+        })(vegaEmbed);
+    
+      </script>
+    </div>
+
+    <p> Dance-pop was the most popular genre for all years within the data set except for 2019, where pop was the most popular. We wondered if there was more variability to popular genres if looking at the dataset while disregarding that genre. We filtered the dataset to include all genres within the dataset except for dance pop. We then aggregated by year, similar to the previous visualization, and plotted our findings through a bar chart that represents top genres by year. The color of each bar is representative of a specific genre, and mousing over a bar will show the top genre and its count. The design elements were kept the same as the previous visualization, to draw connections and emphasize differences among the findings with and without the genre dance pop. </p>
+
+
+    <div class='tableauPlaceholder' id='viz1713379990623' style='position: relative'>
+      <noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Final_17133797714460&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript>
+      <object class='tableauViz'  style='display:none;'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+          <param name='embed_code_version' value='3' /> 
+          <param name='site_root' value='' />
+          <param name='name' value='Final_17133797714460&#47;Dashboard1' />
+          <param name='tabs' value='no' />
+          <param name='toolbar' value='yes' />
+          <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Final_17133797714460&#47;Dashboard1&#47;1.png' /> 
+          <param name='animate_transition' value='yes' />
+          <param name='display_static_image' value='yes' />
+          <param name='display_spinner' value='yes' />
+          <param name='display_overlay' value='yes' />
+          <param name='display_count' value='yes' />
+          <param name='language' value='en-US' />
+          <param name='filter' value='publish=yes' />
+      </object>
+  </div>                
+  <script type='text/javascript'>                    
+      var divElement = document.getElementById('viz1713379990623');                    
+      var vizElement = divElement.getElementsByTagName('object')[0];                    
+      if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} 
+          else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} 
+          else { vizElement.style.width='100%';vizElement.style.height='727px';}                     
+      var scriptElement = document.createElement('script');                    
+      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+  </script>
+  
+  <p> We utilized Tableau to continue our analysis with a WYSIWYG tool to explore the Billboard charts dataset. We decided to pursue this design tool option to see if other visualization methods encapsulated what the data showed and provided any different insights. Using the bubble chart gives a more intuitive idea of the size of each genre’s popularity. </p>
+
+  <h2> Artist Visualizations </h2>
+
+    
+
     <div id="vis"></div>
     <script>
       (function(vegaEmbed) {
@@ -77,34 +229,10 @@
       })(vegaEmbed);
   
     </script>
+
+
+    <h1> Conclusions </h1>
+
   </body>
 
-  <div class='tableauPlaceholder' id='viz1713379990623' style='position: relative'>
-    <noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Final_17133797714460&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript>
-    <object class='tableauViz'  style='display:none;'>
-        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-        <param name='embed_code_version' value='3' /> 
-        <param name='site_root' value='' />
-        <param name='name' value='Final_17133797714460&#47;Dashboard1' />
-        <param name='tabs' value='no' />
-        <param name='toolbar' value='yes' />
-        <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Final_17133797714460&#47;Dashboard1&#47;1.png' /> 
-        <param name='animate_transition' value='yes' />
-        <param name='display_static_image' value='yes' />
-        <param name='display_spinner' value='yes' />
-        <param name='display_overlay' value='yes' />
-        <param name='display_count' value='yes' />
-        <param name='language' value='en-US' />
-        <param name='filter' value='publish=yes' />
-    </object>
-</div>                
-<script type='text/javascript'>                    
-    var divElement = document.getElementById('viz1713379990623');                    
-    var vizElement = divElement.getElementsByTagName('object')[0];                    
-    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} 
-        else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} 
-        else { vizElement.style.width='100%';vizElement.style.height='727px';}                     
-    var scriptElement = document.createElement('script');                    
-    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
-    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-</script>
+
